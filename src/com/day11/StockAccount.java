@@ -57,6 +57,19 @@ class StockPortfolio{
 
 public class StockAccount {
     static StockPortfolio stockPortfolio = new StockPortfolio();
+    void debit(double debitAmount){
+        double accountBalance = stockPortfolio.portfolioValue();
+
+        if(accountBalance>=debitAmount){
+            accountBalance -= debitAmount;
+            System.out.println("You have successfully withdrawn $"+ debitAmount +".");
+            System.out.println("Your remaining Account Balance: $"+ accountBalance);
+        }else {
+            System.out.println("Your Account does not have enough balance to withdrawn $" + debitAmount);
+            System.out.println("Your Account Balance: $"+ accountBalance);
+        }
+
+    }
 
 
 
@@ -79,6 +92,16 @@ public class StockAccount {
         }
 
         stockPortfolio.stockReport();
+
+        System.out.println();
+
+        System.out.println("Account Balance: $" + stockPortfolio.portfolioValue());
+
+        StockAccount stockAccount = new StockAccount();
+        System.out.println("Enter the amount you want to withdrawn: ");
+        double debitAmount = scanner.nextDouble();
+        System.out.println();
+        stockAccount.debit(debitAmount);
 
 
     }
